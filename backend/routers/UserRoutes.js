@@ -8,7 +8,7 @@ const validate = require('../middlewares/handleValidation')
 
 const {userCreateValidation} = require('../middlewares/userValidation')
 
-router.post('/register',userCreateValidation(),validate, register)
+router.post('/register', userCreateValidation() ,validate, register)
 
 
 

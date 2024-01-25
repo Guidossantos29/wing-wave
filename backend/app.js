@@ -1,27 +1,24 @@
-const express = require('express')
-const path = require('path')
-const cors = require('cors')
+const express = require('express');
+const path = require('path');
+const cors = require('cors');
+const dotenv = require('dotenv');
 
-require('dotenv').config() 
+dotenv.config();
 
-const port = process.env.PORT
-
-const app = express()
-
-
+const port = process.env.PORT;
+const app = express();
 const router = require('./routers/Router.js');
 
+app.use(cors({ credentials: true, origin: 'http://localhost:3000' }));
+app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
+app.use(express.json()); 
 
-app.use(cors({credentials:true ,origin: 'http://localhost:3000'}))
+require('./config/db.js');
 
-app.use('/uploads',express.static(path.join(__dirname,'/uploads')))
+app.use(router);
 
-require('./config/db.js')
+app.listen(port, () => {
+    console.log(`App está rodando na porta ${port}`);
+});
 
 
-app.use(router)
-app.use(express.urlencoded({ extended:false }))
-
-app.listen(port,() => {
-    console.log(`app esta rodando na porta ${port}`);
-})
