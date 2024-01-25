@@ -30,7 +30,22 @@ const userCreateValidation = () => {
     ];
   };
 
+  const loginValidation = () => {
+    return [
+      body('email')
+        .isString()
+        .withMessage('email é obrigatorio')
+        .isEmail()
+        .withMessage('Insira um email valido'),
+      body('password')
+        .isString()
+        .withMessage('A senha é obrigatoria')
+          
+    ]
+  }
+
 
 module.exports = {
     userCreateValidation,
+    loginValidation,
 }
