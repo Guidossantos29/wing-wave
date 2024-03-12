@@ -53,7 +53,7 @@ const userCreateValidation = () => {
       body('password')
         .optional()
         .isLength({min:5})
-        .withMessage('o nome precisa ter pelo menos 5 caracteres.')
+        .withMessage('A senha precisa ter pelo menos 5 caracteres.')
         
     ]
   }

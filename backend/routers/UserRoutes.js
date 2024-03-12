@@ -15,7 +15,14 @@ const { imageUpload } = require('../middlewares/imageUpload')
 router.post('/register', userCreateValidation() ,validate, register)
 router.post('/login', loginValidation() ,validate, login)
 router.get('/profile',authGuard,getCurrentUser)
-router.put('/',authGuard,userUpdatevalidation(),validate,imageUpload.single('profileUpdate'),update)
+router.put(
+    "/",
+    authGuard,
+    userUpdatevalidation(),
+    validate,
+    imageUpload.single("profileImage"),
+    update
+  );
 
 
 module.exports = router
