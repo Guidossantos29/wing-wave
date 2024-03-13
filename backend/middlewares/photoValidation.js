@@ -2,21 +2,22 @@ const { body } = require("express-validator");
 
 const photoInsertValidation = () => {
     return [
-        body("title")
+      body("title")
         .not()
         .equals("undefined")
-        .withMessage("O titulo é obrigatorio.")
+        .withMessage("O título é obrigatório")
         .isString()
-        .isLength({min:3})
-        .withMessage("o Titulo precisa ter no minimo 3 caracteres."),
-        body("image").custom((value,{req}) => {
-            if(!req.file) {
-                throw new Error("A imagem é obrigatoria.")
-            }
-            return true
-        })
-    ]
-}
+        .withMessage("O título é obrigatório")
+        .isLength({ min: 3 })
+        .withMessage("O nome precisa ter no mínimo 3 caracteres."),
+      body("image").custom((value, { req }) => {
+        if (!req.file) {
+          throw new Error("A imagem é obrigatória");
+        }
+        return true;
+      }),
+    ];
+  };
 
 
 module.exports = {
